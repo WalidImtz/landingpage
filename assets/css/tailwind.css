@@ -793,6 +793,10 @@ video {
   min-height: 80vh;
 }
 
+.min-h-\[50vh\] {
+  min-height: 50vh;
+}
+
 .w-32 {
   width: 8rem;
 }
@@ -1848,6 +1852,14 @@ body {
 
   .md\:hidden {
     display: none;
+  }
+
+  .md\:aspect-\[21\/9\] {
+    aspect-ratio: 21/9;
+  }
+
+  .md\:min-h-\[80vh\] {
+    min-height: 80vh;
   }
 
   .md\:w-1\/2 {
