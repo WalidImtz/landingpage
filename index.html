@@ -28,7 +28,7 @@
 <body class="font-inter antialiased min-h-screen">
     <!-- Navigasi -->
     <nav x-data="{ open: false }" x-init="$watch('open', value => document.body.style.overflow = value ? 'hidden' : 'auto')">
-        <div class="bg-[#EBEBFF] container mx-auto px-6 sm:px-8 lg:px-16 max-w-7xl flex items-center justify-between py-4">
+        <div class="bg-[#EBEBFF] min-w-full container mx-auto px-6 sm:px-8 lg:px-16 max-w-7xl flex items-center justify-between py-4">
             <!-- Logo -->
             <a href="https://kontenotomatis.com/" class="text-xl font-semibold text-primary hover:text-secondary transition">
                 Konten Otomatis
