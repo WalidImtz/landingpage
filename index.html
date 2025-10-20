@@ -1,525 +1,776 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="0ssUfq8ursjGZ0okcCQ0Thsg7zsEeqz6CWueYtfP">
-    <title>Konten Otomatis</title>
+    <html lang="id">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Konten Otomatis</title>
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600,800&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.bunny.net" />
+        <link
+        href="https://fonts.bunny.net/css?family=figtree:400,600,800&display=swap"
+        rel="stylesheet"
+        />
+        <link
+        href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+        rel="stylesheet"
+        />
 
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
+        <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+        rel="stylesheet"
+        />
 
-    <!-- Animate.css -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+        <!-- TailwindCSS -->
+        <link rel="stylesheet" href="./assets/css/tailwind.css" />
 
-    <!-- CSS (Tailwind build output) -->
-    <link rel="stylesheet" href="./assets/css/tailwind.css">
+        <!-- Alpine.js (pastikan sudah di-load) -->
+        <script
+        defer
+        src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+        ></script>
+    </head>
 
-    <!-- JavaScript -->
-    <script src="./assets/js/main.js"></script>
-</head>
-
-<body class="font-inter antialiased min-h-screen">
-    <!-- Navigasi -->
-    <nav x-data="{ open: false }" x-init="$watch('open', value => document.body.style.overflow = value ? 'hidden' : 'auto')">
-        <div class="bg-[#EBEBFF] min-w-full container mx-auto px-6 sm:px-8 lg:px-16 max-w-7xl flex items-center justify-between py-4">
+    <body class="font-inter antialiased min-h-screen bg-[#EBEBFF]">
+        <!-- Navigasi -->
+        <nav
+        x-data="{ open: false }"
+        @keydown.escape.window="open = false"
+        class="w-full bg-[#EBEBFF] shadow-sm fixed top-0 left-0 z-50"
+        >
+        <div
+            class="container mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-10 py-3"
+        >
             <!-- Logo -->
-            <a href="https://kontenotomatis.com/" class="text-xl font-semibold text-primary hover:text-secondary transition">
-                Konten Otomatis
+            <a
+            href="/"
+            class="text-xl font-semibold text-[#1D1E42] hover:text-[#6A6AFF] transition-colors"
+            >
+            Konten Otomatis
             </a>
 
             <!-- Desktop Menu -->
-            <div class="hidden md:flex items-center gap-8">
-                <div class="flex gap-6">
-                    <a href="#home" class="text-primary hover:text-highlight transition">Beranda</a>
-                    <a href="#about" class="text-primary hover:text-highlight transition">Tentang Kami</a>
-                    <a href="#contact" class="text-primary hover:text-highlight transition">Kontak</a>
-                </div>
-                <div class="flex gap-4">
-                    <a href="/login" class="bg-accent text-textPrimary px-4 py-2 rounded-lg hover:bg-accentText transition">Login</a>
-                    <a href="/register" class="bg-secondary text-textPrimary px-4 py-2 rounded-lg hover:bg-highlight transition">Sign Up</a>
-                </div>
+            <div class="hidden md:flex items-center gap-10">
+            <div class="flex gap-6">
+                <a
+                href="#home"
+                class="text-[#1D1E42] hover:text-[#6A6AFF] font-medium transition-colors"
+                >Beranda</a
+                >
+                <a
+                href="#about"
+                class="text-[#1D1E42] hover:text-[#6A6AFF] font-medium transition-colors"
+                >Tentang Kami</a
+                >
+                <a
+                href="#contact"
+                class="text-[#1D1E42] hover:text-[#6A6AFF] font-medium transition-colors"
+                >Kontak</a
+                >
             </div>
 
-            <!-- Mobile Toggle Button -->
-            <button 
-                @click="open = !open" 
-                class="md:hidden text-primary focus:outline-none focus:ring-2 focus:ring-secondary rounded" 
-                aria-label="Toggle navigation menu"
+            <div class="flex gap-4">
+                <a
+                href="/login"
+                class="bg-[#F98613] text-white px-4 py-2 rounded-lg hover:bg-[#FF9F4D] transition"
+                >Login</a
+                >
+                <a
+                href="/register"
+                class="bg-[#223381] text-white px-4 py-2 rounded-lg hover:bg-[#3446A0] transition"
+                >Sign Up</a
+                >
+            </div>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button
+            @click="open = !open"
+            class="md:hidden text-[#1D1E42] focus:outline-none focus:ring-2 focus:ring-[#6A6AFF] rounded p-1"
+            aria-label="Toggle navigation menu"
             >
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path 
-                        x-show="!open" 
-                        stroke-linecap="round" 
-                        stroke-linejoin="round" 
-                        stroke-width="2" 
-                        d="M4 6h16M4 12h16m-7 6h7"
-                    ></path>
-                    <path 
-                        x-show="open" 
-                        stroke-linecap="round" 
-                        stroke-linejoin="round" 
-                        stroke-width="2" 
-                        d="M6 18L18 6M6 6l12 12"
-                    ></path>
+            <template x-if="!open">
+                <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6h16M4 12h16m-7 6h7"
+                ></path>
                 </svg>
+            </template>
+            <template x-if="open">
+                <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"
+                ></path>
+                </svg>
+            </template>
             </button>
         </div>
 
-        <!-- Mobile Menu -->
-        <div 
-            x-show="open" 
-            class="md:hidden px-6 py-4" 
-            x-transition:enter="transition ease-out duration-300 transform"
-            x-transition:enter-start="opacity-0 -translate-y-4"
-            x-transition:enter-end="opacity-100 translate-y-0"
-            x-transition:leave="transition ease-in duration-200 transform"
-            x-transition:leave-start="opacity-100 translate-y-0"
-            x-transition:leave-end="opacity-0 -translate-y-4"
-        >
-            <a href="#home" class="block text-primary hover:text-highlight py-2 transition">Beranda</a>
-            <a href="#about" class="block text-primary hover:text-highlight py-2 transition">Tentang Kami</a>
-            <a href="#contact" class="block text-primary hover:text-highlight py-2 transition">Kontak</a>
-            <a href="/login" class="block bg-accent text-textPrimary px-4 py-2 rounded-lg mt-2 hover:bg-accentText transition">Login</a>
-            <a href="/register" class="block bg-secondary text-textPrimary px-4 py-2 rounded-lg mt-2 hover:bg-highlight transition">Sign Up</a>
+      <!-- Mobile Menu -->
+      <div
+        x-show="open"
+        x-transition:enter="transition ease-out duration-300 transform"
+        x-transition:enter-start="opacity-0 -translate-y-2"
+        x-transition:enter-end="opacity-100 translate-y-0"
+        x-transition:leave="transition ease-in duration-200 transform"
+        x-transition:leave-start="opacity-100 translate-y-0"
+        x-transition:leave-end="opacity-0 -translate-y-2"
+        class="md:hidden bg-[#EBEBFF] shadow-inner"
+      >
+        <div class="flex flex-col items-start px-6 py-4 space-y-2">
+          <a
+            href="#home"
+            class="block text-[#1D1E42] hover:text-[#6A6AFF] py-1 transition"
+            >Beranda</a
+          >
+          <a
+            href="#about"
+            class="block text-[#1D1E42] hover:text-[#6A6AFF] py-1 transition"
+            >Tentang Kami</a
+          >
+          <a
+            href="#contact"
+            class="block text-[#1D1E42] hover:text-[#6A6AFF] py-1 transition"
+            >Kontak</a
+          >
+          <a
+            href="/login"
+            class="block bg-[#F98613] text-white px-4 py-2 rounded-lg mt-2 hover:bg-[#FF9F4D] transition w-full text-center"
+            >Login</a
+          >
+          <a
+            href="/register"
+            class="block bg-[#223381] text-white px-4 py-2 rounded-lg hover:bg-[#3446A0] transition w-full text-center"
+            >Sign Up</a
+          >
         </div>
+      </div>
     </nav>
 
+    <!-- Tambahkan padding-top agar tidak tertutup navbar fixed -->
+    <div class="pt-20"></div>
+
+
+
     <!-- Main Content -->
-    <main class="bg-primary py-16" style="background-image: linear-gradient(to bottom, #EBEBFF 30%, #2B2BA9 41%, #111143 75%);">        
-        <section class="relative min-h-screen flex items-start justify-center">
-            <div class="container mx-auto px-6 sm:px-8 lg:px-16 max-w-7xl pt-8">                
-                <div class="flex flex-col items-center justify-center gap-6 text-center">
-                    <h1 class="max-w-4xl bg-gradient-to-r from-secondary to-highlight bg-clip-text text-6xl font-bold text-transparent sm:text-4xl md:text-6xl leading-tight">
-                        Buat Konten Visual Menakjubkan Secara Otomatis!
-                    </h1>
-                    <p class="max-w-2xl text-md text-primary sm:text-xl md:text-2xl">
-                        Dengan <strong>Konten Otomatis</strong>, kamu hanya perlu memilih judul, layout, dan gambar. Kami akan langsung membuatkan konten visual yang sempurna untukmu. Tidak perlu punya keahlian desain sama sekali!
-                    </p>
-                    <a href="https://kontenotomatis.com/request_trial" wire:navigate class="mt-4 rounded-lg bg-secondary px-6 py-3 text-md font-semibold text-primary hover:bg-highlight transition duration-300">
-                        Mulai Sekarang
-                    </a>
-                </div>
-                <div>
-                    <img src="./assets/img/newlandingimg.png" alt="View page" class="relative mx-auto m-20 w-[1000px] z-20">
-                </div>
+    <main
+    class="bg-primary py-16"
+    style="background-image: linear-gradient(to bottom, #EBEBFF 30%, #2B2BA9 41%, #111143 75%);"
+    >
+        <section
+            class="relative flex flex-col items-center justify-center min-h-[90vh] text-center"
+        >
+            <div class="container mx-auto px-6 sm:px-8 lg:px-16 max-w-7xl">
+            <!-- Hero Text -->
+            <div class="flex flex-col items-center justify-center gap-6">
+                <h1
+                class="max-w-4xl bg-gradient-to-r from-[#F98613] to-highlight bg-clip-text text-transparent text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight"
+                >
+                Buat Konten Visual Menakjubkan Secara Otomatis!
+                </h1>
+
+                <p
+                class="max-w-2xl text-accentText text-base sm:text-lg md:text-xl leading-relaxed"
+                >
+                Dengan <strong>Konten Otomatis</strong>, kamu hanya perlu memilih
+                judul, layout, dan gambar. Kami akan langsung membuatkan konten visual
+                yang sempurna untukmu. Tidak perlu punya keahlian desain sama sekali!
+                </p>
+
+                <a
+                href="https://kontenotomatis.com/request_trial"
+                class="mt-4 rounded-lg bg-[#F98613] px-6 py-3 text-base sm:text-lg font-semibold text-white hover:bg-[#FF9F4D] transition duration-300"
+                >
+                Mulai Sekarang
+                </a>
+            </div>
+
+            <!-- Hero Image -->
+            <div class="relative mt-12">
+                <img
+                src="./assets/img/newlandingimg.png"
+                alt="Tampilan halaman Konten Otomatis"
+                class="mx-auto w-full max-w-4xl md:max-w-5xl lg:max-w-6xl h-auto rounded-xl drop-shadow-2xl"
+                />
+            </div>
             </div>
         </section>
+
+
 
         <!-- Feature Section -->
-        <section class="py-16 flex items-center justify-center">
-            <div class="container mx-auto px-6 sm:px-8 lg:px-16 max-w-7xl">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                    <div class="flex flex-col gap-2 text-left">
-                        <div>
-                            <h1 class="text-3xl sm:text-3xl lg:text-4xl font-bold leading-tight text-primary bg-secondary px-2 relative inline-block">
-                                Konten Otomatis
-                            </h1>
-                            <div class="flex justify-start">
-                                <img src="./assets/img/hadirkanvisual.png" alt="View page" class="w-full max-w-md sm:max-w-sm lg:max-w-md object-contain">
-                            </div>
-                        </div>
-                        <p class="text-base sm:text-lg lg:text-xl font-medium leading-relaxed text-primary pt-6">
-                            Dikembangkan oleh <strong>Four Vision Media</strong>, <em>Konten Otomatis</em> adalah solusi instan buat kamu yang pengen bikin visual kece tanpa harus jago desain. Cukup klik, pilih, dan... jadi!
-                        </p>
-                    </div>
-                    <div class="flex justify-center">
-                        <img src="./assets/img/hadirimg.png" alt="View page" class="w-full max-w-md sm:max-w-lg lg:max-w-xl object-contain">
-                    </div>
+        <section class="py-16 bg-[#EBEBFF] flex items-center justify-center">
+        <div class="container mx-auto px-6 sm:px-8 lg:px-16 max-w-7xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+            <!-- Kiri: Teks dan Gambar kecil -->
+            <div class="flex flex-col gap-6 text-left">
+                <div>
+                <h2
+                    class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-[#223381] bg-[#F98613] px-3 py-1 rounded-md inline-block shadow-sm"
+                >
+                    Konten Otomatis
+                </h2>
+
+                <div class="mt-6 flex justify-start">
+                    <img
+                    src="./assets/img/hadirkanvisual.png"
+                    alt="Ilustrasi visual konten"
+                    class="w-full max-w-sm sm:max-w-md md:max-w-sm lg:max-w-md object-contain drop-shadow-md"
+                    />
                 </div>
+                </div>
+
+                <p
+                class="text-[#1D1E42] text-base sm:text-lg lg:text-xl font-medium leading-relaxed pt-2"
+                >
+                Dikembangkan oleh <strong>Four Vision Media</strong>,
+                <em>Konten Otomatis</em> adalah solusi instan buat kamu yang pengen
+                bikin visual kece tanpa harus jago desain. Cukup klik, pilih, dan...
+                jadi!
+                </p>
             </div>
+
+            <!-- Kanan: Gambar utama -->
+            <div class="flex justify-center">
+                <img
+                src="./assets/img/hadirimg.png"
+                alt="Tampilan hasil desain otomatis"
+                class="w-full max-w-md sm:max-w-lg lg:max-w-xl object-contain drop-shadow-xl rounded-xl"
+                />
+            </div>
+            </div>
+        </div>
         </section>
 
+
+        <!-- Kenapa Kamu Akan Suka Section -->
         <section class="my-20">
-            <div class="container mx-auto px-6 sm:px-8 lg:px-16 max-w-7xl">
-                <div class="flex flex-col items-center justify-center gap-6 text-center mb-8">
-                    <h2 class="text-4xl font-bold text-primary bg-secondary px-2 py-1 sm:text-3xl lg:text-4xl">
-                        Kenapa Kamu Akan Suka?
-                    </h2>
-                </div>
-                <div class="grid grid-cols-6 md:grid-cols-2 gap-6">
-                    <div class="bg-[#2B2BA9] rounded-lg shadow-lg p-6 flex item-start gap-4 animate-pop-up" style="animation-delay: 0.1s;">
-                        <h3 class="text-7xl font-bold bg-gradient-to-r from-secondary to-highlight bg-clip-text text-transparent">
-                            1
-                        </h3>
-                        <div>
-                            <strong class="text-lg font-semibold text-textPrimary">Super Gampang</strong>
-                            <p class="text-textPrimary">Gak perlu pikir rumit. Nggak ada pusing mikirin desain. Tinggal klik dan jadi.</p>
-                        </div>
-                    </div>
-                    <div class="bg-[#2B2BA9] rounded-lg shadow-lg p-6 flex items-start gap-4 animate-pop-up" style="animation-delay: 0.3s;">
-                        <h3 class="text-7xl font-bold bg-gradient-to-r from-secondary to-highlight bg-clip-text text-transparent">
-                            2
-                        </h3>
-                        <div>
-                            <strong class="text-lg font-semibold text-textPrimary">Hasil Estetik</strong>
-                            <p class="text-textPrimary">Cocok banget buat konten media sosial, promo, sampai presentasi biar makin keren.</p>
-                        </div>
-                    </div>
-                    <div class="bg-[#2B2BA9] rounded-lg shadow-lg p-6 flex items-start gap-4 animate-pop-up" style="animation-delay: 0.5s;">
-                        <h3 class="text-7xl font-bold bg-gradient-to-r from-secondary to-highlight bg-clip-text text-transparent">
-                            3
-                        </h3>
-                        <div>
-                            <strong class="text-lg font-semibold text-textPrimary">Hemat Waktu</strong>
-                            <p class="text-textPrimary">Visual siap pakai bisa jadi hanya dalam hitungan detik.</p>
-                        </div>
-                    </div>
-                    <div class="bg-[#2B2BA9] rounded-lg shadow-lg p-6 flex items-start gap-4 animate-pop-up" style="animation-delay: 0.7s;">
-                        <h3 class="text-7xl font-bold bg-gradient-to-r from-secondary to-highlight bg-clip-text text-transparent">
-                            4
-                        </h3>
-                        <div>
-                            <strong class="text-lg font-semibold text-textPrimary">Untuk Semua Orang</strong>
-                            <p class="text-textPrimary">Dari bisnis lokal sampai kreator konten, semuanya bisa pakai dan langsung merasakan manfaatnya.</p>
-                        </div>
-                    </div>
+        <div class="container mx-auto px-6 sm:px-8 lg:px-16 max-w-7xl">
+            <!-- Judul -->
+            <div class="flex flex-col items-center justify-center text-center mb-12">
+            <h2
+                class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#223381] bg-[#F98613] px-4 py-2 rounded-md shadow-sm"
+            >
+                Kenapa Kamu Akan Suka?
+            </h2>
+            </div>
+
+            <!-- Grid Keunggulan -->
+            <div
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-8"
+            >
+            <!-- Item 1 -->
+            <div
+                class="bg-[#2B2BA9] rounded-2xl shadow-lg p-6 flex items-start gap-5 animate-pop-up"
+                style="animation-delay: 0.1s;"
+            >
+                <h3
+                class="text-6xl sm:text-7xl font-extrabold bg-gradient-to-r from-[#F98613] to-[#FFD27D] bg-clip-text text-transparent"
+                >
+                1
+                </h3>
+                <div>
+                <h4 class="text-lg sm:text-xl font-semibold text-white">
+                    Super Gampang
+                </h4>
+                <p class="text-[#E8E8FF] text-sm sm:text-base leading-relaxed">
+                    Gak perlu pikir rumit. Nggak ada pusing mikirin desain. Tinggal klik
+                    dan jadi.
+                </p>
                 </div>
             </div>
+
+            <!-- Item 2 -->
+            <div
+                class="bg-[#2B2BA9] rounded-2xl shadow-lg p-6 flex items-start gap-5 animate-pop-up"
+                style="animation-delay: 0.3s;"
+            >
+                <h3
+                class="text-6xl sm:text-7xl font-extrabold bg-gradient-to-r from-[#F98613] to-[#FFD27D] bg-clip-text text-transparent"
+                >
+                2
+                </h3>
+                <div>
+                <h4 class="text-lg sm:text-xl font-semibold text-white">
+                    Hasil Estetik
+                </h4>
+                <p class="text-[#E8E8FF] text-sm sm:text-base leading-relaxed">
+                    Cocok banget buat konten media sosial, promo, sampai presentasi biar
+                    makin keren.
+                </p>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div
+                class="bg-[#2B2BA9] rounded-2xl shadow-lg p-6 flex items-start gap-5 animate-pop-up"
+                style="animation-delay: 0.5s;"
+            >
+                <h3
+                class="text-6xl sm:text-7xl font-extrabold bg-gradient-to-r from-[#F98613] to-[#FFD27D] bg-clip-text text-transparent"
+                >
+                3
+                </h3>
+                <div>
+                <h4 class="text-lg sm:text-xl font-semibold text-white">
+                    Hemat Waktu
+                </h4>
+                <p class="text-[#E8E8FF] text-sm sm:text-base leading-relaxed">
+                    Visual siap pakai bisa jadi hanya dalam hitungan detik.
+                </p>
+                </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div
+                class="bg-[#2B2BA9] rounded-2xl shadow-lg p-6 flex items-start gap-5 animate-pop-up"
+                style="animation-delay: 0.7s;"
+            >
+                <h3
+                class="text-6xl sm:text-7xl font-extrabold bg-gradient-to-r from-[#F98613] to-[#FFD27D] bg-clip-text text-transparent"
+                >
+                4
+                </h3>
+                <div>
+                <h4 class="text-lg sm:text-xl font-semibold text-white">
+                    Untuk Semua Orang
+                </h4>
+                <p class="text-[#E8E8FF] text-sm sm:text-base leading-relaxed">
+                    Dari bisnis lokal sampai kreator konten, semuanya bisa pakai dan
+                    langsung merasakan manfaatnya.
+                </p>
+                </div>
+            </div>
+            </div>
+        </div>
         </section>
 
+
+        <!-- Apa Saja yang Bisa Kamu Buat Section -->
         <section class="relative my-36 flex items-center justify-center">
-            <div class="container mx-auto px-6 sm:px-8 lg:px-16 max-w-7xl">
-                <div class="flex flex-col items-center justify-center gap-6 text-center">
-                    <h2 class="text-4xl font-bold text-primary bg-secondary px-2 py-1 sm:text-3xl lg:text-4xl">
-                        Apa Saja yang Bisa Kamu Buat?
-                    </h2>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-32 items-center">
-                    <div class="flex justify-center">
-                        <div class="relative w-full max-w-3x1">
-                            <img 
-                                src="./assets/img/3detkk.png" 
-                                alt="3sec Generate" 
-                                class="w-full object-contain transform transition-transform duration-300 z-10">
-                        </div>
-                    </div>
-                    <div class="pl-12 my-8 flex flex-col gap-6 text-left">
-                        <div class="flex justify-center">
-                            <img src="./assets/img/generatimg.png" alt="View page" class="w-full max-w-md sm:max-w-sm lg:max-w-md object-contain">
-                        </div>
-                        <p class="text-lg font-medium leading-relaxed text-textPrimary sm:text-xl lg:text-lg">
-                            Kamu bisa dengan mudah membuat konten gambar dalam sekejap
-                        </p>
-                    </div>
-                    <div class="flex justify-center"> 
-                        <div class="relative w-full max-w-3x1">
-                            <img 
-                                src="./assets/img/exceldrop.png" 
-                                alt="Drop Excel" 
-                                class="w-full object-contain transform transition-transform duration-300 z-10">
-                        </div>
-                    </div>
-                    <div class="pl-12 my-8 flex flex-col gap-6 text-left">
-                        <div class="flex justify-center">
-                            <img src="./assets/img/generatebulkimg.png" alt="View page" class="w-full max-w-md sm:max-w-sm lg:max-w-md object-contain">
-                        </div>
-                        <p class="text-lg font-medium leading-relaxed text-textPrimary sm:text-xl lg:text-lg">
-                            Untuk kamu yang memiliki banyak data yang ingin dijadikan konten gambar bisa melalui fitur bulk image yang akan membuat seluruh gambar dari data .xlsx yang kamu berikan
-                        </p>
-                    </div>
-                </div>
+        <div class="container mx-auto px-6 sm:px-8 lg:px-16 max-w-7xl">
+            <!-- Judul -->
+            <div class="flex flex-col items-center justify-center text-center mb-16">
+            <h2
+                class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#223381] bg-[#F98613] px-4 py-2 rounded-md shadow-sm"
+            >
+                Apa Saja yang Bisa Kamu Buat?
+            </h2>
             </div>
+
+            <!-- Fitur 1 -->
+            <div
+            class="flex flex-col md:flex-row items-center gap-10 mb-24 md:mb-32"
+            >
+            <div class="flex justify-center md:w-1/2">
+                <img
+                src="./assets/img/3detkk.png"
+                alt="3sec Generate"
+                class="w-full max-w-3xl object-contain transform transition-transform duration-300 hover:scale-105"
+                />
+            </div>
+            <div class="md:w-1/2 flex flex-col gap-6 text-left">
+                <div class="flex justify-center md:justify-start">
+                <img
+                    src="./assets/img/generatimg.png"
+                    alt="Generate Image"
+                    class="w-full max-w-md sm:max-w-sm lg:max-w-md object-contain"
+                />
+                </div>
+                <p
+                class="text-base sm:text-lg lg:text-xl font-medium leading-relaxed text-[#E8E8FF]"
+                >
+                Kamu bisa dengan mudah membuat konten gambar dalam sekejap.
+                </p>
+            </div>
+            </div>
+
+            <!-- Fitur 2 -->
+            <div
+            class="flex flex-col md:flex-row items-center gap-10"
+            >
+            <div class="flex justify-center md:w-1/2">
+                <img
+                src="./assets/img/exceldrop.png"
+                alt="Drop Excel"
+                class="w-full max-w-3xl object-contain transform transition-transform duration-300 hover:scale-105"
+                />
+            </div>
+            <div class="md:w-1/2 flex flex-col gap-6 text-left">
+                <div class="flex justify-center md:justify-start">
+                <img
+                    src="./assets/img/generatebulkimg.png"
+                    alt="Generate Bulk Image"
+                    class="w-full max-w-md sm:max-w-sm lg:max-w-md object-contain"
+                />
+                </div>
+                <p
+                class="text-base sm:text-lg lg:text-xl font-medium leading-relaxed text-[#E8E8FF]"
+                >
+                Untuk kamu yang memiliki banyak data dan ingin dijadikan konten
+                gambar, gunakan fitur bulk image untuk membuat seluruh gambar dari
+                file <code>.xlsx</code> hanya dengan sekali proses.
+                </p>
+            </div>
+            </div>
+        </div>
         </section>
 
-        <section class="relative min-h-screen">
-            <div class="relative w-full">
-                <img 
-                    src="./assets/img/idevisual.png"
-                    alt="Ide Visual">
-            </div>
+
+
+        <!-- Hero Section Visual Ide -->
+        <section class="relative min-h-[80vh] flex items-center justify-center">
+        <div class="relative w-full">
+            <img
+            src="./assets/img/idevisual.png"
+            alt="Ide Visual"
+            class="w-full object-cover h-full"
+            />
+        </div>
         </section>
 
+        <!-- Showcase Bulk Sales -->
         <section class="relative my-36 flex items-center justify-center">
-            <div class="container mx-auto px-6 sm:px-8 lg:px-16 max-w-7xl">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-32 items-center">
-                    <div class="flex justify-center">
-                        <div class="relative w-full max-w-3x1">
-                            <img 
-                                src="./assets/img/bulksales1.png" 
-                                alt="sales 1" 
-                                class="w-full object-contain transform transition-transform duration-300 z-10">
-                        </div>
-                    </div>
-                    <div class="flex justify-center">
-                        <div class="relative w-full max-w-3x1">
-                            <img 
-                                src="./assets/img/exportsales2.png" 
-                                alt="sales 2" 
-                                class="w-full object-contain transform transition-transform duration-300 z-10">
-                        </div>
-                    </div>
+        <div class="container mx-auto px-6 sm:px-8 lg:px-16 max-w-7xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-center">
+            <!-- Bulk Sales 1 -->
+            <div class="flex justify-center">
+                <div class="relative w-full max-w-3xl">
+                <img
+                    src="./assets/img/bulksales1.png"
+                    alt="Bulk Sales 1"
+                    class="w-full object-contain transform transition-transform duration-300 hover:scale-105 z-10"
+                />
                 </div>
             </div>
+
+            <!-- Bulk Sales 2 -->
+            <div class="flex justify-center">
+                <div class="relative w-full max-w-3xl">
+                <img
+                    src="./assets/img/exportsales2.png"
+                    alt="Export Sales 2"
+                    class="w-full object-contain transform transition-transform duration-300 hover:scale-105 z-10"
+                />
+                </div>
+            </div>
+            </div>
+        </div>
         </section>
 
+
+        <!-- Media Carousel Section -->
         <section class="my-16 w-full">
-            <div class="container mx-auto max-w-7xl">
-                <!-- First Row (Scrolls Left) -->
-                <div class="relative w-full mb-8 overflow-hidden px-4">
-                    <div class="flex gap-6 animate-scroll-left" id="carousel-1">
-                        <div class="flex-none w-64 aspect-[16/9] rounded-lg overflow-hidden shadow-md">
-                            <img src="./assets/img/Rectangle 4179.png" alt="Media 1" class="w-full h-full object-cover">
-                        </div>
-                        <div class="flex-none w-64 aspect-[16/9] rounded-lg overflow-hidden shadow-md">
-                            <img src="./assets/img/Rectangle 4180.png" alt="Media 2" class="w-full h-full object-cover">
-                        </div>
-                        <div class="flex-none w-64 aspect-[16/9] rounded-lg overflow-hidden shadow-md">
-                            <img src="./assets/img/Rectangle 4182.png" alt="Media 3" class="w-full h-full object-cover">
-                        </div>
-                        <div class="flex-none w-64 aspect-[16/9] rounded-lg overflow-hidden shadow-md">
-                            <img src="./assets/img/Rectangle 4183.png" alt="Media 4" class="w-full h-full object-cover">
-                        </div>
-                    </div>
-                </div>
+        <div class="container mx-auto max-w-7xl">
 
-                <!-- Second Row (Scrolls Right) -->
-                <div class="relative w-full overflow-hidden px-4">
-                    <div class="flex gap-6 animate-scroll-right" id="carousel-2">
-                        <div class="flex-none w-64 aspect-[16/9] rounded-lg overflow-hidden shadow-md">
-                            <img src="./assets/img/Rectangle 4184.png" alt="Media 5" class="w-full h-full object-cover">
-                        </div>
-                        <div class="flex-none w-64 aspect-[16/9] rounded-lg overflow-hidden shadow-md">
-                            <img src="./assets/img/Rectangle 4186.png" alt="Media 6" class="w-full h-full object-cover">
-                        </div>
-                        <div class="flex-none w-64 aspect-[16/9] rounded-lg overflow-hidden shadow-md">
-                            <img src="./assets/img/Rectangle 4187.png" alt="Media 7" class="w-full h-full object-cover">
-                        </div>
-                        <div class="flex-none w-64 aspect-[16/9] rounded-lg overflow-hidden shadow-md">
-                            <img src="./assets/img/Rectangle 4187-1.png" alt="Media 8" class="w-full h-full object-cover">
-                        </div>
-                    </div>
+            <!-- First Row (Scrolls Left) -->
+            <div class="relative w-full mb-8 overflow-hidden px-4" role="group" aria-label="Media carousel 1">
+            <div class="flex gap-6 animate-scroll-left will-change-transform" id="carousel-1">
+                <div class="flex-none w-48 sm:w-56 md:w-64 aspect-[16/9] rounded-lg overflow-hidden shadow-md">
+                <img src="./assets/img/Rectangle 4179.png" alt="Media 1" class="w-full h-full object-cover">
+                </div>
+                <div class="flex-none w-48 sm:w-56 md:w-64 aspect-[16/9] rounded-lg overflow-hidden shadow-md">
+                <img src="./assets/img/Rectangle 4180.png" alt="Media 2" class="w-full h-full object-cover">
+                </div>
+                <div class="flex-none w-48 sm:w-56 md:w-64 aspect-[16/9] rounded-lg overflow-hidden shadow-md">
+                <img src="./assets/img/Rectangle 4182.png" alt="Media 3" class="w-full h-full object-cover">
+                </div>
+                <div class="flex-none w-48 sm:w-56 md:w-64 aspect-[16/9] rounded-lg overflow-hidden shadow-md">
+                <img src="./assets/img/Rectangle 4183.png" alt="Media 4" class="w-full h-full object-cover">
                 </div>
             </div>
+            </div>
+
+            <!-- Second Row (Scrolls Right) -->
+            <div class="relative w-full overflow-hidden px-4" role="group" aria-label="Media carousel 2">
+            <div class="flex gap-6 animate-scroll-right will-change-transform" id="carousel-2">
+                <div class="flex-none w-48 sm:w-56 md:w-64 aspect-[16/9] rounded-lg overflow-hidden shadow-md">
+                <img src="./assets/img/Rectangle 4184.png" alt="Media 5" class="w-full h-full object-cover">
+                </div>
+                <div class="flex-none w-48 sm:w-56 md:w-64 aspect-[16/9] rounded-lg overflow-hidden shadow-md">
+                <img src="./assets/img/Rectangle 4186.png" alt="Media 6" class="w-full h-full object-cover">
+                </div>
+                <div class="flex-none w-48 sm:w-56 md:w-64 aspect-[16/9] rounded-lg overflow-hidden shadow-md">
+                <img src="./assets/img/Rectangle 4187.png" alt="Media 7" class="w-full h-full object-cover">
+                </div>
+                <div class="flex-none w-48 sm:w-56 md:w-64 aspect-[16/9] rounded-lg overflow-hidden shadow-md">
+                <img src="./assets/img/Rectangle 4187-1.png" alt="Media 8" class="w-full h-full object-cover">
+                </div>
+            </div>
+            </div>
+
+        </div>
         </section>
+
 
 
         <!-- Pricing Section -->
-        <div wire:snapshot="{&quot;data&quot;:{&quot;codeUserId&quot;:null,&quot;listPackage&quot;:[null,{&quot;keys&quot;:[1,2,3],&quot;class&quot;:&quot;Illuminate\\Database\\Eloquent\\Collection&quot;,&quot;modelClass&quot;:&quot;App\\Models\\Package\\Package&quot;,&quot;s&quot;:&quot;elcln&quot;}]},&quot;memo&quot;:{&quot;id&quot;:&quot;SiwY2bI4E3eRlIVP1Kvc&quot;,&quot;name&quot;:&quot;package.show-handle-package-list&quot;,&quot;path&quot;:&quot;\/&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;children&quot;:[],&quot;scripts&quot;:[],&quot;assets&quot;:[],&quot;errors&quot;:[],&quot;locale&quot;:&quot;en&quot;},&quot;checksum&quot;:&quot;cab7a689b60b51783b0b7615b668f9870024367b0cbacd57c20289a9a2d369ea&quot;}" wire:effects="[]" wire:id="SiwY2bI4E3eRlIVP1Kvc" class="container mx-auto px-4 py-12 max-w-6xl">
+        <section class="py-16 bg-primary">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <!-- Header -->
             <div class="text-center mb-12 animate__animated animate__fadeIn">
-                <h1 class="text-3xl md:text-4xl font-bold text-textPrimary mb-3">Kobit(Konten Otomatis bit) Price List</h1>
-                <p class="text-lg text-textSecondary">
-                    1 Credit = 1 Image (<span class="font-semibold text-secondary">Rp 1.000/credit</span>)
+            <h1 class="text-3xl md:text-4xl font-bold text-textPrimary mb-3">
+                Kobit (Konten Otomatis bit) Price List
+            </h1>
+            <p class="text-lg text-textSecondary">
+                1 Credit = 1 Image (<span class="font-semibold text-secondary">Rp 1.000/credit</span>)
+            </p>
+            </div>
+
+            <!-- Pricing Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+
+            <!-- Starter Pack -->
+            <div class="bg-accent rounded-lg p-3 overflow-hidden transition-all duration-300 hover:shadow-xl flex flex-col justify-between h-full animate__animated animate__fadeInUp animate__delay-1s">
+                <div class="absolute top-0 right-0 bg-secondary text-accentText text-xs font-bold px-3 py-1 rounded-bl-lg capitalize">
+                Starter Pack
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                <div class="font-medium text-textPrimary mb-4">
+                    <span class="text-4xl font-bold">Rp 10,000</span>/600 Kobit
+                </div>
+                <div class="border border-gray-500 bg-gray-500 h-px mt-2 mb-6"></div>
+                <ul class="space-y-2 mb-10 text-textPrimary">
+                    <li class="flex items-center">
+                    <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    10 gambar
+                    </li>
+                    <li class="flex items-center">
+                    <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Untuk pembelian awal
+                    </li>
+                </ul>
+                <a href="https://kontenotomatis.com/pay/WVRSa1pXRTNZalJpT1dNeU5ETTVORFJoTW1JMFpqZ3dPV0ZtTjJRNVl6UTVOelkyT1RoaE9XTTNNR0V3TmprNVpXTXlOR1prTVRZek4yTmpOekV3Wlh4S1pFRlRNeTlNVjNWNmJHbENRaXN3U2pBM1YzQkhZbXQyTVU1S1ZsWTJObk5sTnpSd1NHUndTMmhoYld0VFdVRXhRVXcyUlVWb1lqZENUalZCZWpOU0x6TldVR3gzY1d0eVYzSlpUMWRSY1dGT1JXWTFVVFZzYlVOYVEwUnBkVkJtUW1JMGNWVmhNbVVyYnowPQ" wire:navigate>
+                    <button class="w-full py-2 px-2 font-medium rounded-lg transition-colors duration-200 bg-secondary text-primary">
+                    Buy Package
+                    </button>
+                </a>
+                </div>
+            </div>
+
+            <!-- Medium Pack -->
+            <div class="bg-accent relative rounded-lg p-3 border border-primary overflow-hidden transition-all duration-300 hover:shadow-xl flex flex-col justify-between h-full animate__animated animate__fadeInUp animate__delay-1s">
+                <div class="absolute top-0 right-0 bg-gradient-to-r from-secondary to-highlight text-accent text-xs font-bold px-3 py-1 rounded-bl-lg capitalize">
+                Medium Pack
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                <div class="font-medium text-textPrimary mb-4">
+                    <span class="text-4xl font-bold">Rp 100,000</span>/100 Kobit
+                </div>
+                <div class="border border-gray-500 bg-gray-500 h-px mt-2 mb-6"></div>
+                <ul class="space-y-2 mb-10 text-textPrimary">
+                    <li class="flex items-center">
+                    <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Sampai dengan 100 gambar
+                    </li>
+                    <li class="flex items-center">
+                    <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Harga normal Rp.100,000
+                    </li>
+                    <li class="flex items-center">
+                    <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Bonus 5 Kredit
+                    </li>
+                </ul>
+                <a href="https://kontenotomatis.com/pay/TkRCa05tTmxZVFEzTURobE1qbGlPVE00TVRKa09XWXhPRGd3TWpJMk5tWXpNR1U0TlRVME1URm1aR05tWkRSaVptTmtPRE0zWlRNNVlUZG1PVGt5Wkh4d2EycHpWVnBYWjFSWGVYZGFiV05yYWxkUlp6VmtiWFJJY3k5eE9IVlJhRmhIYUZOS1JYcEZVek5ZYzI1U1RrWm1TQzlTTkRGdFEyTmlZVmw2VEhwMlRrd3lVbEk0ZFdWc05ETTFjRUYyUzNwd1ExY3ZSMWRuTW1SeVExSnFPSFExZWtoTVJYWmpkR3RRUlQwPQ" wire:navigate>
+                    <button class="w-full py-2 px-2 font-medium rounded-lg transition-colors duration-200 bg-gradient-to-r from-secondary to-highlight text-accent">
+                    Buy Package
+                    </button>
+                </a>
+                </div>
+            </div>
+
+            <!-- Large Pack -->
+            <div class="bg-accent relative rounded-lg p-3 overflow-hidden transition-all duration-300 hover:shadow-xl flex flex-col justify-between h-full animate__animated animate__fadeInUp animate__delay-1s">
+                <div class="absolute top-0 right-0 bg-highlight text-accentText text-xs font-bold px-3 py-1 rounded-bl-lg capitalize">
+                Large Pack
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                <div class="font-medium text-textPrimary mb-4">
+                    <span class="text-4xl font-bold">Rp 500,000</span>/500 Kobit
+                </div>
+                <div class="border border-gray-500 bg-gray-500 h-px mt-2 mb-6"></div>
+                <ul class="space-y-2 mb-10 text-textPrimary">
+                    <li class="flex items-center">
+                    <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Sampai dengan 500 gambar
+                    </li>
+                    <li class="flex items-center">
+                    <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Gambar prioritas tinggi
+                    </li>
+                    <li class="flex items-center">
+                    <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    Bonus 20 kredit gambar
+                    </li>
+                </ul>
+                <a href="https://kontenotomatis.com/pay/TVdNMVpUVmhPR1kyWlRJMk9HSm1aR1U0WlRZMU16azBNVFV6TldKbU5tSmtNekF4TWpRNU56WTRPRFF5Tm1WbU9USmpNalEwWTJObU1UVTRPRFV3Wkh4blNuVndObVJrZG5NclZFbHpMM1JLVkd0M1NTdEJLMWRyVEdwWGJWUndXRFJCYW5WUE1XWndhRVE0UW5SRmMxaHBUbXhVUzFSM2RqaDFOVWRKUTNoTE9XNHdjVlJ0UzBWaVpuZE5aekJOYjFCNmNFNW1TMlJUTUdkV2VtRlFXbE12ZG0xaGNHVXpaVWRaYnowPQ" wire:navigate>
+                    <button class="w-full py-2 px-2 font-medium rounded-lg transition-colors bg-highlight duration-200 text-accent">
+                    Buy Package
+                    </button>
+                </a>
+                </div>
+            </div>
+
+            </div>
+        </div>
+        </section>
+
+
+        <!-- Testimonial Section -->
+        <section id="testimonial" class="py-16 w-full">
+        <div class="container mx-auto max-w-7xl px-4">
+            <!-- Header -->
+            <div class="flex flex-col items-start mb-12">
+            <h2 class="text-4xl font-bold text-textPrimary sm:text-3xl lg:text-4xl mb-2">
+                Testimonial
+            </h2>
+            <div class="w-32 h-1 bg-gradient-to-r from-secondary to-highlight rounded"></div>
+            </div>
+
+            <!-- Grid Testimonial -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Card 1 -->
+            <div class="p-6 rounded-lg bg-accent/50 shadow-lg">
+                <h3 class="text-lg font-bold text-textPrimary mb-3">Budi Santoso</h3>
+                <p class="text-sm text-textSecondary">
+                "Konten Otomatis membuat desain saya jadi jauh lebih mudah! Saya bisa membuat visual menarik untuk media sosial dalam hitungan menit."
                 </p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-                <!-- Starter Pack -->
-                <div class="bg-accent relative rounded-lg p-3 overflow-hidden transition-all duration-300 hover:shadow-xl animate__animated animate__fadeInUp animate__delay-1s flex flex-col justify-between h-full">
-                    <div class="absolute top-0 right-0 bg-secondary text-accentText text-xs font-bold px-3 py-1 rounded-bl-lg capitalize">
-                        Starter Pack
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <div class="font-medium text-textPrimary mb-4">
-                            <span class="font-medium text-4xl">Rp 10,000</span>/600 Kobit
-                        </div>
-                        <div class="border border-gray-500 bg-gray-500 h-px mt-2 mb-6"></div>
-                        <ul class="space-y-2 mb-10 text-textPrimary">
-                            <li class="flex items-center">
-                                <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                10 gambar
-                            </li>
-                            <li class="flex items-center">
-                                <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                Untuk pembelian awal
-                            </li>
-                        </ul>
-                        <div class="mt-auto">
-                            <a href="https://kontenotomatis.com/pay/WVRSa1pXRTNZalJpT1dNeU5ETTVORFJoTW1JMFpqZ3dPV0ZtTjJRNVl6UTVOelkyT1RoaE9XTTNNR0V3TmprNVpXTXlOR1prTVRZek4yTmpOekV3Wlh4S1pFRlRNeTlNVjNWNmJHbENRaXN3U2pBM1YzQkhZbXQyTVU1S1ZsWTJObk5sTnpSd1NHUndTMmhoYld0VFdVRXhRVXcyUlVWb1lqZENUalZCZWpOU0x6TldVR3gzY1d0eVYzSlpUMWRSY1dGT1JXWTFVVFZzYlVOYVEwUnBkVkJtUW1JMGNWVmhNbVVyYnowPQ" wire:navigate>
-                                <button class="w-full py-2 px-2 font-medium rounded-lg transition-colors duration-200 bg-secondary text-primary">
-                                    Buy Package
-                                </button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Medium Pack -->
-                <div class="bg-accent relative rounded-lg p-3 border border-primary overflow-hidden transition-all duration-300 hover:shadow-xl animate__animated animate__fadeInUp animate__delay-1s flex flex-col justify-between h-full">
-                    <div class="absolute top-0 right-0 bg-gradient-to-r from-secondary to-highlight text-accent text-xs font-bold px-3 py-1 rounded-bl-lg capitalize">
-                        Medium Pack
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <div class="font-medium text-textPrimary mb-4">
-                            <span class="font-medium text-4xl">Rp 100,000</span>/100 Kobit
-                        </div>
-                        <div class="border border-gray-500 bg-gray-500 h-px mt-2 mb-6"></div>
-                        <ul class="space-y-2 mb-10 text-textPrimary">
-                            <li class="flex items-center">
-                                <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                Sampai dengan 100 gambar
-                            </li>
-                            <li class="flex items-center">
-                                <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                Harga normal Rp.100,000
-                            </li>
-                            <li class="flex items-center">
-                                <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                Bonus 5 Kredit
-                            </li>
-                        </ul>
-                        <div class="mt-auto">
-                            <a href="https://kontenotomatis.com/pay/TkRCa05tTmxZVFEzTURobE1qbGlPVE00TVRKa09XWXhPRGd3TWpJMk5tWXpNR1U0TlRVME1URm1aR05tWkRSaVptTmtPRE0zWlRNNVlUZG1PVGt5Wkh4d2EycHpWVnBYWjFSWGVYZGFiV05yYWxkUlp6VmtiWFJJY3k5eE9IVlJhRmhIYUZOS1JYcEZVek5ZYzI1U1RrWm1TQzlTTkRGdFEyTmlZVmw2VEhwMlRrd3lVbEk0ZFdWc05ETTFjRUYyUzNwd1ExY3ZSMWRuTW1SeVExSnFPSFExZWtoTVJYWmpkR3RRUlQwPQ" wire:navigate>
-                                <button class="w-full py-2 px-2 font-medium rounded-lg transition-colors duration-200 bg-gradient-to-r from-secondary to-highlight text-accent">
-                                    Buy Package
-                                </button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Large Pack -->
-                <div class="bg-accent relative rounded-lg p-3 overflow-hidden transition-all duration-300 hover:shadow-xl animate__animated animate__fadeInUp animate__delay-1s flex flex-col justify-between h-full">
-                    <div class="absolute top-0 right-0 bg-highlight text-accentText text-xs font-bold px-3 py-1 rounded-bl-lg capitalize">
-                        Large Pack
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <div class="font-medium text-textPrimary mb-4">
-                            <span class="font-medium text-4xl">Rp 500,000</span>/500 Kobit
-                        </div>
-                        <div class="border border-gray-500 bg-gray-500 h-px mt-2 mb-6"></div>
-                        <ul class="space-y-2 mb-10 text-textPrimary">
-                            <li class="flex items-center">
-                                <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                Sampai dengan 500 gambar
-                            </li>
-                            <li class="flex items-center">
-                                <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                Gambar prioritas tinggi
-                            </li>
-                            <li class="flex items-center">
-                                <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                Bonus 20 kredit gambar
-                            </li>
-                        </ul>
-                        <div class="mt-auto">
-                            <a href="https://kontenotomatis.com/pay/TVdNMVpUVmhPR1kyWlRJMk9HSm1aR1U0WlRZMU16azBNVFV6TldKbU5tSmtNekF4TWpRNU56WTRPRFF5Tm1WbU9USmpNalEwWTJObU1UVTRPRFV3Wkh4blNuVndObVJrZG5NclZFbHpMM1JLVkd0M1NTdEJLMWRyVEdwWGJWUndXRFJCYW5WUE1XWndhRVE0UW5SRmMxaHBUbXhVUzFSM2RqaDFOVWRKUTNoTE9XNHdjVlJ0UzBWaVpuZE5aekJOYjFCNmNFNW1TMlJUTUdkV2VtRlFXbE12ZG0xaGNHVXpaVWRaYnowPQ" wire:navigate>
-                                <button class="w-full py-2 px-2 font-medium rounded-lg transition-colors bg-highlight duration-200 text-accent">
-                                    Buy Package
-                                </button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+            <!-- Card 2 -->
+            <div class="p-6 rounded-lg bg-accent/50 shadow-lg">
+                <h3 class="text-lg font-bold text-textPrimary mb-3">Siti Aisyah</h3>
+                <p class="text-sm text-textSecondary">
+                "Saya bukan desainer, tapi dengan Konten Otomatis, presentasi saya terlihat profesional dan menarik. Sangat direkomendasikan!"
+                </p>
             </div>
-
-            <!-- Testimonial -->
-            <section id="testimonial" class="py-16 w-full flex items-start justify-start">
-                <div class="container max-w-7xl">
-                    <h2 class="text-4xl font-bold text-left text-textPrimary sm:text-3xl lg:text-4xl mb-4">
-                        Testimonial
-                    </h2>
-                    <div class="mt-4 w-32 border-t-2 border-gradient-to-r from-secondary to-highlight"></div>
-                    <div class="relative w-full mt-12 overflow-hidden">
-                        <div class="flex gap-6 animate-scroll-left" id="marquee">
-                            <!-- Original Cards -->
-                            <div class="flex-none w-80 sm:w-96 p-6 rounded-lg bg-accent/50 shadow-lg">
-                                <h3 class="text-lg font-bold text-textPrimary mb-3">Budi Santoso</h3>
-                                <p class="text-sm text-textSecondary">
-                                    "Konten Otomatis membuat desain saya jadi jauh lebih mudah! Saya bisa membuat visual menarik untuk media sosial dalam hitungan menit."
-                                </p>
-                            </div>
-                            <div class="flex-none w-80 sm:w-96 p-6 rounded-lg bg-accent/50 shadow-lg">
-                                <h3 class="text-lg font-bold text-textPrimary mb-3">Siti Aisyah</h3>
-                                <p class="text-sm text-textSecondary">
-                                    "Saya bukan desainer, tapi dengan Konten Otomatis, presentasi saya terlihat profesional dan menarik. Sangat direkomendasikan!"
-                                </p>
-                            </div>
-                            <div class="flex-none w-80 sm:w-96 p-6 rounded-lg bg-accent/50 shadow-lg">
-                                <h3 class="text-lg font-bold text-textPrimary mb-3">Andi Pratama</h3>
-                                <p class="text-sm text-textSecondary">
-                                    "Alat ini menghemat waktu saya. Template yang dihasilkan sangat cocok untuk promosi bisnis saya. Simpel dan efektif!"
-                                </p>
-                            </div>
-                            <div class="flex-none w-80 sm:w-96 p-6 rounded-lg bg-accent/50 shadow-lg">
-                                <h3 class="text-lg font-bold text-textPrimary mb-3">Rina Lestari</h3>
-                                <p class="text-sm text-textSecondary">
-                                    "Dari ide hingga visual jadi, Konten Otomatis benar-benar membantu saya menghasilkan konten berkualitas tinggi dengan cepat."
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <!-- Card 3 -->
+            <div class="p-6 rounded-lg bg-accent/50 shadow-lg">
+                <h3 class="text-lg font-bold text-textPrimary mb-3">Andi Pratama</h3>
+                <p class="text-sm text-textSecondary">
+                "Alat ini menghemat waktu saya. Template yang dihasilkan sangat cocok untuk promosi bisnis saya. Simpel dan efektif!"
+                </p>
+            </div>
+            <!-- Card 4 -->
+            <div class="p-6 rounded-lg bg-accent/50 shadow-lg">
+                <h3 class="text-lg font-bold text-textPrimary mb-3">Rina Lestari</h3>
+                <p class="text-sm text-textSecondary">
+                "Dari ide hingga visual jadi, Konten Otomatis benar-benar membantu saya menghasilkan konten berkualitas tinggi dengan cepat."
+                </p>
+            </div>
+            </div>
         </div>
+        </section>
+
 
         <!-- Call to Action Section --> 
-        <section class="relative mb-32 flex items-start justify-center">
-            <div class="container mx-auto px-6 sm:px-8 lg:px-16 max-w-7xl">                
-                <div class="flex flex-col items-center justify-center gap-6 text-center">
-                    <h2 class="text-3xl font-bold text-textPrimary sm:text-4xl lg:text-5xl leading-tight">
-                        Siap Bikin Visual Lebih Keren, Lebih Cepat?
-                    </h2>
-                    <a
-                        href="https://kontenotomatis.com/request_trial" 
-                        wire:navigate 
-                        class="mt-4 rounded-lg bg-secondary px-6 py-2 text-md font-semibold text-primary hover:bg-highlight transition duration-300">
-                        Coba Konten Otomatis Sekarang
-                    </a>
-                </div>
+        <section class="relative mb-32 flex items-center justify-center">
+        <div class="container mx-auto px-6 sm:px-8 lg:px-16 max-w-7xl">
+            <div class="flex flex-col items-center justify-center gap-6 text-center">
+            <h2 class="text-3xl font-bold text-textPrimary sm:text-4xl lg:text-5xl leading-tight">
+                Siap Bikin Visual Lebih Keren, Lebih Cepat?
+            </h2>
+            <a
+                href="https://kontenotomatis.com/request_trial"
+                wire:navigate
+                class="mt-4 rounded-lg bg-secondary px-6 py-3 text-base font-semibold text-primary hover:bg-highlight transition duration-300"
+            >
+                Coba Konten Otomatis Sekarang
+            </a>
             </div>
+        </div>
         </section>
 
-        <section>
-            <div class="container mx-auto px-6 sm:px-8 lg:px-16 max-w-7xl">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="flex flex-col items-start gap-4">
-                        <p class="text-lg font-bold text-textSecondary">Konten Otomatis</p>
-                    </div> 
-                    <div class="flex flex-col items-start gap-4">
-                        <ul class="space-y-4 text-textPrimary"> konten otomatis kionten yang otomatis dubuat sescaara otomatis dan di 
-                            <li class="flex items-center space-x-3">
-                                <svg class="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                </svg>
-                                <a href="#features" class="hover:text-highlight transition">Fitur</a>
-                            </li>
-                            <li class="flex items-center space-x-3">
-                                <svg class="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                </svg>
-                                <a href="#about" class="hover:text-highlight transition">Tentang Kami</a>
-                            </li>
-                            <li class="flex items-center space-x-3">
-                                <svg class="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                </svg>
-                                <a href="#contact" class="hover:text-highlight transition">Kontak</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+        <!-- Footer Links Section -->
+        <section class="py-16 w-full bg-primary">
+        <div class="container mx-auto px-6 sm:px-8 lg:px-16 max-w-7xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Brand / Info -->
+            <div class="flex flex-col items-start gap-4">
+                <p class="text-lg font-bold text-textSecondary">Konten Otomatis</p>
+                <p class="text-textPrimary text-base">
+                Solusi cepat dan mudah untuk membuat konten visual menakjubkan tanpa perlu keahlian desain.
+                </p>
             </div>
+
+            <!-- Navigation Links -->
+            <div class="flex flex-col items-start gap-4">
+                <ul class="space-y-3 text-textPrimary">
+                <li class="flex items-center space-x-3">
+                    <svg class="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                    <a href="#features" class="hover:text-highlight transition">Fitur</a>
+                </li>
+                <li class="flex items-center space-x-3">
+                    <svg class="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                    <a href="#about" class="hover:text-highlight transition">Tentang Kami</a>
+                </li>
+                <li class="flex items-center space-x-3">
+                    <svg class="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                    <a href="#contact" class="hover:text-highlight transition">Kontak</a>
+                </li>
+                </ul>
+            </div>
+            </div>
+        </div>
         </section>
+
         
 
         <!-- Footer -->
-        <footer class="bg-primary">
+        <footer class="bg-primary py-8">
             <div class="container mx-auto px-6 sm:px-8 lg:px-16 max-w-7xl">
-                <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-                    <p class="text-base text-textPrimary">© 2025 Konten Otomatis. All Rights Reserved.</p>
-                    <div class="flex items-center gap-4">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-6">
+                    <!-- Copyright -->
+                    <p class="text-base text-textPrimary text-center md:text-left">
+                        © 2025 Konten Otomatis. All Rights Reserved.
+                    </p>
+
+                    <!-- Powered by -->
+                    <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
                         <span class="text-base text-textPrimary">Powered by</span>
-                        <img src="https://kontenotomatis.com/assets/icons/logo-4vm.svg" alt="Four Vision Media Logo" class="w-36 sm:w-44 max-w-xs h-auto">
+                        <img src="https://kontenotomatis.com/assets/icons/logo-4vm.svg" 
+                            alt="Four Vision Media Logo" 
+                            class="w-36 sm:w-44 max-w-xs h-auto">
                     </div>
                 </div>
             </div>
